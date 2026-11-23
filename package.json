@@ -19,6 +19,7 @@
     "docs",
     "scripts",
     "README.md",
+    "README.zh.md",
     "LICENSE"
   ],
   "dsh": {
@@ -48,7 +49,8 @@
   "homepage": "https://www.dshtoolbox.com/",
   "scripts": {
     "smoke": "node scripts/smoke.mjs",
-    "smoke:client": "node scripts/client-smoke.mjs"
+    "smoke:client": "node scripts/client-smoke.mjs",
+    "verify": "node scripts/verify.mjs"
   },
   "repository": {
     "type": "git",
