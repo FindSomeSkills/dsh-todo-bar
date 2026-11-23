@@ -1,0 +1,57 @@
+{
+  "name": "dsh-todo-bar",
+  "version": "0.2.0",
+  "private": false,
+  "type": "module",
+  "description": "A daily todo bar pinned above the composer in every DSH session: today, weekday, remaining count, per-day list with rollover and carry-forward.",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json",
+    "./docs/*": "./docs/*"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "deepseek",
+    "todo",
+    "todo-list",
+    "plugin",
+    "cordis",
+    "dsh-plugin"
+  ],
+  "author": "YG",
+  "homepage": "https://www.dshtoolbox.com/",
+  "scripts": {
+    "smoke": "node scripts/smoke.mjs",
+    "smoke:client": "node scripts/client-smoke.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FindSomeSkills/dsh-todo-bar"
+  }
+}

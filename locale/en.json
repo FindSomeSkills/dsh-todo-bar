@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Daily brief",
+    "description": "A todo bar pinned above the composer in every session: today's date, weekday, remaining count, with day-based archiving and carry-forward.",
+    "detail": "docs/DETAIL.md"
+  }
+}
