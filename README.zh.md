@@ -1,10 +1,10 @@
 # dsh-todo-bar
 
-一条浮在 DeepSeek Harness 界面上的待办栏：今天的日期、还剩几项、以及宿主里已经排好的自动化任务，全都不用打开就能看见。
+**一条浮在 DeepSeek Harness 界面上的待办栏**：今天的日期、还剩几项、以及宿主里已经排好的自动化任务，**全都不用打开就能看见**。
 
-能拖到任何位置，位置记住。双击标题栏归位。挡事的时候收起来只剩一行。
+**能拖到任何位置，位置记住。** 双击标题栏归位。挡事的时候收起来只剩一行。
 
-[English](README.md) · [完整说明](https://www.dshtoolbox.com/zh/plugins/dsh-todo-bar/)
+[npm](https://www.npmjs.com/package/dsh-todo-bar) · [Source](https://github.com/FindSomeSkills/dsh-todo-bar) · [中文说明](README.zh.md) · [完整说明](https://www.dshtoolbox.com/zh/plugins/dsh-todo-bar/)
 
 ## 长什么样
 
@@ -40,7 +40,7 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 
 ## 加一条
 
-没有单独的时间输入框。把时间写在开头，它自己摘出来：
+**没有单独的时间输入框。** 把时间写在开头，它自己摘出来：
 
 | 你输入 | 存成 |
 |---|---|
@@ -51,11 +51,11 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 | `买牛奶` | 没时间，整条当正文 |
 | `10:99 随便` | 不算时间，整条留在正文 |
 
-一位数的小时会被补成两位，否则排序会错。不存在的时间（`10:99`、`25:00`）在界面和存储两层都被挡住，不会悄悄把顺序搞乱。
+一位数的小时会被补成两位，否则排序会错。**不存在的时间（`10:99`、`25:00`）在界面和存储两层都被挡住**，不会悄悄把顺序搞乱。
 
 点文字可以改。如果改完开头还带着时间，它会自动挪到时间列。
 
-勾上复选框，0.9 秒后这一行自己消失。自动化任务跑完也是这个行为。
+**勾上复选框，0.9 秒后这一行自己消失。** 自动化任务跑完也是这个行为——留住已完成条目的清单，最后都会变成没人看的档案。
 
 ## 自动化任务
 
@@ -65,7 +65,7 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 共 10 个自动化任务 · 下一个 11-25 20:00 发 Reddit 外链
 ```
 
-这些任务是只读的。它们归 DSH 的定时器管，这条栏只负责让你看见今天已经承诺了什么。
+**自动化任务和你自己的清单摆在同一张卡里**——别家没这么做。它们是只读的：归 DSH 的定时器管，这条栏只负责让你看见今天已经承诺了什么，**避免自己跟自己撞车**。
 
 ## 跨零点
 
@@ -81,7 +81,7 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 
 `$DSH_HOME/dsh-todo-bar/state.json`，默认 `~/.dsh/dsh-todo-bar/state.json`。
 
-一个文件，所有 profile、所有连到这台机器的浏览器共用。写入走临时文件 + rename，写到一半断电不会留下半个 JSON。文件坏了会改名成 `state.json.corrupt-<时间戳>.bak` 再重建空清单——损坏不会让这条栏打不开。
+**一个文件，所有 profile、所有连到这台机器的浏览器共用。**写入走临时文件 + rename，写到一半断电不会留下半个 JSON。文件坏了会改名成 `state.json.corrupt-<时间戳>.bak` 再重建空清单——损坏不会让这条栏打不开。
 
 ## 模型也能读写
 
@@ -111,7 +111,7 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 
 - DeepSeek Harness `>= 0.2.0-rc.1`（要 `shell.overlay` 插槽和 `ctx.webServer`）
 - 必须是 Web profile。纯命令行的 profile 没有 web server，浏览器那一半无处可挂
-- 没有平台相关代码，Windows / macOS / Linux 跑同一份文件
+- **没有平台相关代码**，Windows / macOS / Linux 跑同一份文件
 - Desktop 客户端**没测过**。插槽树大概率一样，但「大概率」不等于验证过，所以不写支持
 
 ## 它不是什么

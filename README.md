@@ -1,10 +1,10 @@
 # dsh-todo-bar
 
-A todo bar that floats over the DeepSeek Harness interface. Today's date, what is left, and the scheduled tasks the host already has queued — all visible without opening anything.
+**A todo bar that floats over the DeepSeek Harness interface.** Today's date, what is left, and the scheduled tasks the host already has queued — **all visible without opening anything.**
 
-Drag it anywhere. It remembers. Double-click the title bar to send it back to the corner.
+**Drag it anywhere. It remembers.** Double-click the title bar to send it back to the corner.
 
-[中文说明](README.zh.md) · [Full write-up](https://www.dshtoolbox.com/plugins/dsh-todo-bar/)
+[npm](https://www.npmjs.com/package/dsh-todo-bar) · [Source](https://github.com/FindSomeSkills/dsh-todo-bar) · [中文说明](README.zh.md) · [完整说明](https://www.dshtoolbox.com/plugins/dsh-todo-bar/)
 
 ## What it looks like
 
@@ -40,7 +40,7 @@ Restart the host once — the HTTP route and the client bundle both register at 
 
 ## Adding an item
 
-There is no separate time field. Put the clock time at the start of the line and it is pulled out:
+**There is no separate time field.** Put the clock time at the start of the line and it is pulled out:
 
 | You type | Stored as |
 |---|---|
@@ -51,15 +51,15 @@ There is no separate time field. Put the clock time at the start of the line and
 | `买牛奶` | no time, just text |
 | `10:99 随便` | not a time — the whole line stays as text |
 
-Single-digit hours are padded so sorting stays correct. Impossible times (`10:99`, `25:00`) are rejected at both the interface and the storage layer rather than silently corrupting the order.
+Single-digit hours are padded so sorting stays correct. **Impossible times (`10:99`, `25:00`) are rejected at both the interface and the storage layer** rather than silently corrupting the order.
 
 Edit an item by clicking its text. If the text you save still starts with a time, it moves to the time column.
 
-Tick the box and the row disappears after 0.9 seconds. Scheduled tasks leave the list the same way once they run.
+**Tick the box and the row disappears after 0.9 seconds.** Scheduled tasks leave the list the same way once they run — a list that keeps its finished rows turns into an archive nobody reads.
 
 ## Scheduled tasks
 
-The bar reads `$DSH_HOME/storages/schedule.json` and lists only the tasks due **today**. A list of ten future tasks buries what you have to do now, so the footer carries the total and the next one instead:
+**The bar reads `$DSH_HOME/storages/schedule.json` directly** and lists only the tasks due **today**. A list of ten future tasks buries what you have to do now, so the footer carries the total and the next one instead:
 
 ```
 共 10 个自动化任务 · 下一个 11-25 20:00 发 Reddit 外链
@@ -81,7 +81,7 @@ Finished items do not follow you forward.
 
 `$DSH_HOME/dsh-todo-bar/state.json`, default `~/.dsh/dsh-todo-bar/state.json`.
 
-One file, shared by every profile and every browser pointed at this host. Writes go through a temporary file and a rename, so a crash mid-write cannot leave a half-written document. A damaged file is renamed to `state.json.corrupt-<timestamp>.bak` and replaced with an empty day — corruption never blocks the bar.
+**One file, shared by every profile and every browser pointed at this host.** Writes go through a temporary file and a rename, so a crash mid-write cannot leave a half-written document. A damaged file is renamed to `state.json.corrupt-<timestamp>.bak` and replaced with an empty day — corruption never blocks the bar.
 
 ## The model can use it too
 
@@ -111,7 +111,7 @@ Bound to the host's listening address only. If the host route is unreachable —
 
 - DeepSeek Harness `>= 0.2.0-rc.1` (needs the `shell.overlay` slot and `ctx.webServer`)
 - A Web profile. CLI-only profiles have no web server, so the browser half has nothing to render into.
-- No platform code: Windows, macOS and Linux run the same file.
+- **No platform code:** Windows, macOS and Linux run the same file.
 - Desktop client is **untested**. The slot tree is probably the same, but "probably" is not "verified", so it is not claimed.
 
 ## What it is not
