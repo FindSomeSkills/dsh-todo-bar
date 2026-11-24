@@ -1,6 +1,6 @@
 {
   "name": "dsh-todo-bar",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "type": "module",
   "description": "A daily todo bar pinned above the composer in every DSH session: today, weekday, remaining count, per-day list with rollover and carry-forward.",
@@ -16,8 +16,11 @@
     "client.js",
     "cordis.patch.yml",
     "locale/*.json",
-    "docs",
-    "scripts",
+    "docs/DETAIL.md",
+    "docs/shot.png",
+    "scripts/smoke.mjs",
+    "scripts/client-smoke.mjs",
+    "scripts/verify.mjs",
     "README.md",
     "README.zh.md",
     "LICENSE"
