@@ -33,6 +33,7 @@ console.log('[1/5] 跑单元测试…');
 for (const [label, script] of [
   ['宿主 19 项', 'scripts/smoke.mjs'],
   ['客户端 7 项', 'scripts/client-smoke.mjs'],
+  ['文档 6 项', 'scripts/docs-check.mjs'],
 ]) {
   try {
     const out = execFileSync(process.execPath, [script], { encoding: 'utf8' });

@@ -114,6 +114,7 @@ Bound to the host's listening address only. If the host route is unreachable —
 ```bash
 node scripts/smoke.mjs          # 19 checks: storage, rollover, archive, corruption, routes, tool
 node scripts/client-smoke.mjs   # 7 checks: bundle shape, slot registration, i18n parity, render path
+node scripts/docs-check.mjs     # 6 checks: the shipped detail pages match the plugin that ships
 node scripts/verify.mjs         # 12 end-to-end checks against the running host
 ```
 

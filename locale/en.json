@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Daily brief",
-    "description": "A todo bar pinned above the composer in every session: today's date, weekday, remaining count, with day-based archiving and carry-forward.",
+    "description": "A todo card floating over every session: today's date, what is left, and the scheduled tasks the host already has queued for today.",
     "detail": "docs/DETAIL.md"
   }
 }

@@ -114,6 +114,7 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 ```bash
 node scripts/smoke.mjs          # 19 项：存储、跨天、归档、损坏恢复、路由、工具
 node scripts/client-smoke.mjs   # 7 项：bundle 结构、插槽注册、中英字典对齐、渲染
+node scripts/docs-check.mjs     # 6 项：随包发出的说明页与插件实际行为一致
 node scripts/verify.mjs         # 12 项：对运行中的宿主做端到端验证
 ```
 

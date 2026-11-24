@@ -1,7 +1,7 @@
-// Daily brief — Host half.
-// Owns the file behind the bar: one JSON document under $DSH_HOME/daily-brief,
+// dsh-todo-bar — Host half.
+// Owns the file behind the card: one JSON document under $DSH_HOME/dsh-todo-bar,
 // atomic writes, a day rollover that archives yesterday and carries unfinished
-// items forward, and two HTTP routes the browser half reads.
+// items forward, one tool and two HTTP routes that read and write the same file.
 
 import { promises as fs } from 'node:fs';
 import os from 'node:os';
