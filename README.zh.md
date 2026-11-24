@@ -115,10 +115,10 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 node scripts/smoke.mjs          # 19 项：存储、跨天、归档、损坏恢复、路由、工具
 node scripts/client-smoke.mjs   # 7 项：bundle 结构、插槽注册、中英字典对齐、渲染
 node scripts/docs-check.mjs     # 6 项：随包发出的说明页与插件实际行为一致
-node scripts/verify.mjs         # 12 项：对运行中的宿主做端到端验证
+node scripts/verify.mjs         # 13 项：对运行中的宿主做端到端验证
 ```
 
-两套单测都跑在临时 `DSH_HOME` 里，不碰真实清单。
+前三套跑在临时 `DSH_HOME` 里，不碰真实清单；最后一组会往运行中的宿主写两条探针条目，再删掉。
 
 ## 许可
 

@@ -109,26 +109,48 @@ await checkAsync('POST /mutate toggle 能勾选', async () => {
   if (!it || it.done !== true) throw new Error('没勾上');
 });
 
-await checkAsync('非法时间被拒（不写 due）', async () => {
-  const r = await http('/dsh-todo-bar/mutate', {
+await checkAsync('非法时间被拒（不写入 due，探针当场清掉）', async () => {
+  const add = await http('/dsh-todo-bar/mutate', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ op: 'add', text: '『验证探针』非法时间', due: '10:99' }),
   });
-  const it = r.json.items.find((x) => x.text === '『验证探针』非法时间');
+  const it = add.json.items.find((x) => x.text === '『验证探针』非法时间');
   if (!it) throw new Error('条目没建');
-  if (it.due) throw new Error('非法时间被存进去了: ' + it.due);
-  probeId = probeId; // 留着，等下统一清
+  // 这里的探针没有后续步骤会用到，清不掉就会在用户真实清单里留一条假待办。
+  try {
+    if (it.due) throw new Error('非法时间被存进去了: ' + it.due);
+  } finally {
+    await http('/dsh-todo-bar/mutate', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ op: 'remove', id: it.id }),
+    });
+  }
 });
 
-await checkAsync('POST /mutate remove 能删除', async () => {
+await checkAsync('POST /mutate remove 能删除，且不留探针', async () => {
   const r = await http('/dsh-todo-bar/mutate', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ op: 'remove', id: probeId }),
   });
   if (r.json.items.some((x) => x.id === probeId)) throw new Error('还在');
+  const left = r.json.items.filter((x) => String(x.text).includes('验证探针'));
+  if (left.length) throw new Error('清单里还剩探针：' + left.map((x) => x.text).join(' / '));
 });
+
+// 兜底：前面任何一步中途失败，都别把探针留在用户的真实清单里
+{
+  const now = await http('/dsh-todo-bar/state');
+  for (const x of now.json.items.filter((i) => String(i.text).includes('验证探针'))) {
+    await http('/dsh-todo-bar/mutate', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ op: 'remove', id: x.id }),
+    });
+  }
+}
 
 // ---------- 4. 计划任务聚合 ----------
 console.log('[4/5] 计划任务聚合…');

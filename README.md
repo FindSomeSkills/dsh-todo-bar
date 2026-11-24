@@ -115,10 +115,10 @@ Bound to the host's listening address only. If the host route is unreachable —
 node scripts/smoke.mjs          # 19 checks: storage, rollover, archive, corruption, routes, tool
 node scripts/client-smoke.mjs   # 7 checks: bundle shape, slot registration, i18n parity, render path
 node scripts/docs-check.mjs     # 6 checks: the shipped detail pages match the plugin that ships
-node scripts/verify.mjs         # 12 end-to-end checks against the running host
+node scripts/verify.mjs         # 13 end-to-end checks against the running host
 ```
 
-Both suites run against a throwaway `DSH_HOME`, so they never touch your real list.
+The first three run against a throwaway `DSH_HOME`, so they never touch your real list. The last one writes two probe items to the live host and deletes them again.
 
 ## License
 
