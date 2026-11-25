@@ -26,6 +26,20 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 
 Restart the host once — the HTTP route and the client bundle both register at startup. If the bar does not appear afterwards, force-reload the page with `Ctrl+Shift+R`; the client bundle is cached hard.
 
+### Install with one prompt
+
+Paste this into DSH. **It checks the prerequisites, installs a pinned version, verifies what landed on disk, restarts the host and says what to look for.** It needs `registry.npmjs.org`; if that is unreachable it stops instead of changing anything else.
+
+```
+Install the DSH plugin dsh-todo-bar 0.2.2, in this order, and stop at the first failure with the exact error:
+1. Check node -v is 20 or newer and git --version works.
+2. Run: dsh plugin --profile web add dsh-todo-bar@0.2.2
+3. Read ~/.dsh/profiles/web/node_modules/dsh-todo-bar/package.json and confirm version is 0.2.2.
+4. Restart the host: on Windows stop DSH021-Web and start it again; on macOS run launchctl kickstart -k gui/$(id -u)/com.deepseek.dsh.web
+5. Open http://127.0.0.1:2081, force-reload, and confirm the todo card sits above the composer.
+Needs registry.npmjs.org. If it fails, stop and show the exact error.
+```
+
 ## Adding an item
 
 **There is no separate time field.** Put the clock time at the start of the line and it is pulled out:
@@ -64,6 +78,24 @@ At local midnight, the whole of yesterday moves into an archive (last 30 days ke
 ```
 
 Finished items do not follow you forward.
+
+## Upgrading does not happen by itself
+
+**There is no auto-update.** The install writes an exact version into the profile and DSH has no updater daemon, so nothing changes until you run a command. **A background swap would be worse:** the plugin lives inside the host process, and replacing its files under a live process leaves half the routes on the old code.
+
+Paste this into DSH:
+
+```
+Upgrade the DSH plugin dsh-todo-bar:
+1. Read the current version: cat ~/.dsh/profiles/web/node_modules/dsh-todo-bar/package.json | grep '"version"'
+2. Read the latest version: npm view dsh-todo-bar version
+3. If they are equal, say "already current" and change nothing.
+4. Otherwise run dsh plugin --profile web add dsh-todo-bar@<latest> (pin the version).
+5. Read the version on disk again and confirm it changed.
+6. Restart the host: on Windows stop DSH021-Web and start it again; on macOS run launchctl kickstart -k gui/$(id -u)/com.deepseek.dsh.web
+7. Open http://127.0.0.1:2081, force-reload, and confirm the card still opens.
+Needs registry.npmjs.org. If it fails, stop and show the exact error.
+```
 
 ## Where the data lives
 
