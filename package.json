@@ -1,6 +1,6 @@
 {
   "name": "dsh-todo-bar",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": false,
   "type": "module",
   "description": "A todo card floating over every DSH session: today's date, what is left, and the scheduled tasks the host already has queued for today.",

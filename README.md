@@ -33,7 +33,7 @@ Paste this into DSH. **It checks the prerequisites, installs a pinned version, v
 ```
 Install the DSH plugin dsh-todo-bar 0.2.2, in this order, and stop at the first failure with the exact error:
 1. Check node -v is 20 or newer and git --version works.
-2. Run: dsh plugin --profile web add dsh-todo-bar@0.2.2
+2. Run: dsh plugin --profile web add dsh-todo-bar@<the version from step 2>
 3. Read ~/.dsh/profiles/web/node_modules/dsh-todo-bar/package.json and confirm version is 0.2.2.
 4. Restart the host: on Windows stop DSH021-Web and start it again; on macOS run launchctl kickstart -k gui/$(id -u)/com.deepseek.dsh.web
 5. Open http://127.0.0.1:2081, force-reload, and confirm the todo card sits above the composer.
@@ -88,7 +88,8 @@ Paste this into DSH:
 ```
 Upgrade the DSH plugin dsh-todo-bar:
 1. Read the current version: cat ~/.dsh/profiles/web/node_modules/dsh-todo-bar/package.json | grep '"version"'
-2. Read the latest version: npm view dsh-todo-bar version
+2. Read the latest version:
+node -e "fetch('https://registry.npmjs.org/dsh-todo-bar/latest').then(r=>r.json()).then(j=>console.log(j.version))"
 3. If they are equal, say "already current" and change nothing.
 4. Otherwise run dsh plugin --profile web add dsh-todo-bar@<latest> (pin the version).
 5. Read the version on disk again and confirm it changed.

@@ -33,7 +33,7 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 ```
 帮我安装 DSH 插件 dsh-todo-bar 0.2.2，按顺序做，哪一步失败就停下把原文报给我：
 1. 检查 node -v 是否 20 或更高，git --version 是否可用；
-2. 执行 dsh plugin --profile web add dsh-todo-bar@0.2.2（版本必须写死，pnpm 会跳过刚发布的版本）；
+2. 执行 dsh plugin --profile web add dsh-todo-bar@<the version from step 2>（版本必须写死，pnpm 会跳过刚发布的版本）；
 3. 读 ~/.dsh/profiles/web/node_modules/dsh-todo-bar/package.json，确认 version 是 0.2.2；
 4. 重启宿主：Windows 停掉 DSH021-Web 再启动；macOS 执行 launchctl kickstart -k gui/$(id -u)/com.deepseek.dsh.web；
 5. 打开 http://127.0.0.1:2081 强刷页面，确认待办卡片出现在输入框上方。
@@ -88,7 +88,8 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 ```
 帮我升级 DSH 插件 dsh-todo-bar：
 1. 读当前版本：cat ~/.dsh/profiles/web/node_modules/dsh-todo-bar/package.json | grep '"version"'
-2. 查最新版本：npm view dsh-todo-bar version
+2. 查最新版本（会打印版本号）：
+node -e "fetch('https://registry.npmjs.org/dsh-todo-bar/latest').then(r=>r.json()).then(j=>console.log(j.version))"
 3. 两者相同就告诉我「已是最新」，不要动任何文件；
 4. 不同则执行 dsh plugin --profile web add dsh-todo-bar@<最新版本>（版本写死）；
 5. 再读一次磁盘版本，确认已变；
