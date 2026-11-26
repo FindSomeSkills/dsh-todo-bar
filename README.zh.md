@@ -12,7 +12,7 @@
 
 界面文字跟随 DSH 的语言设置。DSH 是中文就显示中文，英文就显示英文。
 
-## 装
+## 安装：一条命令
 
 ```bash
 dsh plugin --profile web add dsh-todo-bar
@@ -26,7 +26,7 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 
 装完**重启一次宿主**，HTTP 路由和客户端 bundle 都是启动时注册的。如果重启后没看到这条栏，按 `Ctrl+Shift+R` 强制刷新——客户端 bundle 缓存得很死。
 
-### 一句话装好
+### 让 DSH 装：把这段发给它
 
 把这段发给 DSH。**它会检查前置条件、装写死的版本、核对磁盘上的版本、重启宿主，再告诉你该看什么。** 需要能访问 `registry.npmjs.org`；不通就停下，不会去改别的配置。
 
@@ -79,9 +79,18 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 
 做完的不会跟过来。
 
-## 升级不会自动发生
+## 升级：一条命令
 
 **没有自动升级。** 安装时把精确版本写进 profile，DSH 也没有更新守护进程：你不敲命令，版本就不会变。**后台直接换文件更糟：** 插件跑在宿主进程里，运行中替换文件会让一半路由停在旧代码上。
+
+先读最新版本，写死安装，再重启宿主（Windows 停掉 DSH021-Web 再启动；macOS 执行 `launchctl kickstart -k gui/$(id -u)/com.deepseek.dsh.web`）。
+
+```bash
+node -e "fetch('https://registry.npmjs.org/dsh-todo-bar/latest').then(r=>r.json()).then(j=>console.log(j.version))"
+dsh plugin --profile web add dsh-todo-bar@<上面打印的版本>
+```
+
+### 升级：让 DSH 做
 
 把这段发给 DSH：
 

@@ -12,7 +12,7 @@
 
 Interface text follows the DSH language setting. Chinese DSH shows Chinese, English shows English.
 
-## Install
+## Install: one command
 
 ```bash
 dsh plugin --profile web add dsh-todo-bar
@@ -26,7 +26,7 @@ dsh plugin --profile web add github:FindSomeSkills/dsh-todo-bar
 
 Restart the host once — the HTTP route and the client bundle both register at startup. If the bar does not appear afterwards, force-reload the page with `Ctrl+Shift+R`; the client bundle is cached hard.
 
-### Install with one prompt
+### Let DSH install it
 
 Paste this into DSH. **It checks the prerequisites, installs a pinned version, verifies what landed on disk, restarts the host and says what to look for.** It needs `registry.npmjs.org`; if that is unreachable it stops instead of changing anything else.
 
@@ -79,9 +79,18 @@ At local midnight, the whole of yesterday moves into an archive (last 30 days ke
 
 Finished items do not follow you forward.
 
-## Upgrading does not happen by itself
+## Upgrading: one command
 
 **There is no auto-update.** The install writes an exact version into the profile and DSH has no updater daemon, so nothing changes until you run a command. **A background swap would be worse:** the plugin lives inside the host process, and replacing its files under a live process leaves half the routes on the old code.
+
+Read the latest version, install it pinned, then restart the host (Windows: stop DSH021-Web and start it again; macOS: `launchctl kickstart -k gui/$(id -u)/com.deepseek.dsh.web`).
+
+```bash
+node -e "fetch('https://registry.npmjs.org/dsh-todo-bar/latest').then(r=>r.json()).then(j=>console.log(j.version))"
+dsh plugin --profile web add dsh-todo-bar@<the version printed above>
+```
+
+### Upgrading: let DSH do it
 
 Paste this into DSH:
 
